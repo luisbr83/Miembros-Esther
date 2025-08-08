@@ -57,11 +57,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     );
   }
 
-  // Avoid rendering children on auth pages if user state is about to change
   const isAuthPage = pathname === "/login";
-  if (user && isAuthPage) return null;
-  if (!user && pathname !== "/login") return null;
+  const isProtectedPage = pathname === "/members";
 
+  // Don't render anything while redirecting
+  if (user && isAuthPage) return null;
+  if (!user && isProtectedPage) return null;
 
   return (
     <AuthContext.Provider value={{ user, loading }}>
