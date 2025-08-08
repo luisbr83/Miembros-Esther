@@ -75,7 +75,7 @@ export default function MembersPage() {
                   <BookOpen className="h-6 w-6 text-primary" />
                 </div>
                 <CardTitle className="font-headline text-2xl text-foreground">
-                  Ebook: O Método Esther
+                  Método Esther
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -85,7 +85,7 @@ export default function MembersPage() {
                 </p>
                 <Dialog>
                   <DialogTrigger asChild>
-                    <Button className="mt-4 w-full">Acessar Ebook</Button>
+                    <Button className="mt-4 w-full">Acesse Aqui</Button>
                   </DialogTrigger>
                   <DialogContent className="sm:max-w-[80vw] h-[80vh] flex flex-col">
                     <DialogHeader>
@@ -95,43 +95,14 @@ export default function MembersPage() {
                       </DialogDescription>
                     </DialogHeader>
                     <ScrollArea className="flex-grow h-full">
-                      <div className="prose max-w-none p-6">
-                        {/*
-                          ADICIONE SEU HTML AQUI
-                          Você pode colar o conteúdo do seu ebook diretamente dentro desta div.
-                          Por exemplo:
-                        */}
-                        <h1>Capítulo 1: O Início da Jornada</h1>
-                        <p>
-                          Lorem ipsum dolor sit amet, consectetur adipiscing
-                          elit. Sed non risus. Suspendisse lectus tortor,
-                          dignissim sit amet, adipiscing nec, ultricies sed,
-                          dolor. Cras elementum ultrices diam. Maecenas ligula
-                          massa, varius a, semper congue, euismod non, mi.
-                        </p>
-                        <p>
-                          Proin porttitor, orci nec nonummy molestie, enim est
-                          eleifend mi, non fermentum diam nisl sit amet erat.
-                          Duis semper. Duis arcu massa, scelerisque vitae,
-                          consequat in, pretium a, enim. Pellentesque congue.
-                          Ut in risus volutpat libero pharetra tempor. Cras
-                          vestibulum bibendum augue. Praesent egestas leo in
-                          pede. Praesent blandit odio eu enim. Pellentesque sed
-                          dui ut augue blandit sodales. Vestibulum ante ipsum
-                          primis in faucibus orci luctus et ultrices posuere
-                          cubilia Curae; Aliquam nibh. Mauris ac mauris sed pede
-                          pellentesque fermentum. Maecenas adipiscing ante non
-                          diam.
-                        </p>
-                        <h2>Subtítulo 1.1</h2>
-                        <p>
-                          Fusce consectetuer risus a nunc. Aliquam erat
-                          volutpat. Morbi in sem quis dui placerat ornare.
-                          Pellentesque odio nisi, euismod in, pharetra a,
-                          ultricies in, diam. Sed arcu. Cras consequat.
-                        </p>
-                      </div>
-                    </ScrollArea>
+  <iframe
+    src="/MetodoEsther.html" // Nome do seu arquivo no public (sem acento e espaço de preferência)
+    width="100%"
+    height="100%"
+    style={{ border: "none", minHeight: "70vh" }}
+    title="Ebook Método Esther"
+  />
+</ScrollArea>
                   </DialogContent>
                 </Dialog>
               </CardContent>
