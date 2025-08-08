@@ -1,9 +1,10 @@
 "use client";
 
 import { signOut } from "firebase/auth";
-import { BookOpen, LogOut, Star } from "lucide-react";
+import { BookOpen, LogOut, Star, Expand, Minimize } from "lucide-react";
 import Head from "next/head";
 import { useRouter } from "next/navigation";
+import React, { useRef, useState, useEffect } from "react";
 
 import { useAuth } from "@/components/auth-provider";
 import { Button } from "@/components/ui/button";
@@ -27,6 +28,8 @@ import { auth } from "@/lib/firebase";
 export default function MembersPage() {
   const router = useRouter();
   const { user } = useAuth();
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+  const [isFullscreen, setIsFullscreen] = useState(false);
 
   const handleLogout = async () => {
     try {
@@ -36,6 +39,32 @@ export default function MembersPage() {
       console.error("Logout failed:", error);
     }
   };
+
+  const toggleFullscreen = () => {
+    if (!iframeRef.current) return;
+
+    if (!document.fullscreenElement) {
+      iframeRef.current.requestFullscreen().catch((err) => {
+        alert(
+          `Error attempting to enable full-screen mode: ${err.message} (${err.name})`
+        );
+      });
+    } else {
+      document.exitFullscreen();
+    }
+  };
+
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      setIsFullscreen(!!document.fullscreenElement);
+    };
+
+    document.addEventListener("fullscreenchange", handleFullscreenChange);
+
+    return () => {
+      document.removeEventListener("fullscreenchange", handleFullscreenChange);
+    };
+  }, []);
 
   return (
     <>
@@ -88,21 +117,37 @@ export default function MembersPage() {
                     <Button className="mt-4 w-full">Acesse Aqui</Button>
                   </DialogTrigger>
                   <DialogContent className="sm:max-w-[80vw] h-[80vh] flex flex-col">
-                    <DialogHeader>
-                      <DialogTitle>O Método Esther</DialogTitle>
-                      <DialogDescription>
-                        Seu guia para uma vida com mais propósito e fé.
-                      </DialogDescription>
+                    <DialogHeader className="flex-row items-center justify-between">
+                      <div>
+                        <DialogTitle>O Método Esther</DialogTitle>
+                        <DialogDescription>
+                          Seu guia para uma vida com mais propósito e fé.
+                        </DialogDescription>
+                      </div>
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        onClick={toggleFullscreen}
+                        aria-label="Tela cheia"
+                      >
+                        {isFullscreen ? (
+                          <Minimize className="h-5 w-5" />
+                        ) : (
+                          <Expand className="h-5 w-5" />
+                        )}
+                      </Button>
                     </DialogHeader>
                     <ScrollArea className="flex-grow h-full">
-  <iframe
-    src="/MetodoEsther.html" // Nome do seu arquivo no public (sem acento e espaço de preferência)
-    width="100%"
-    height="100%"
-    style={{ border: "none", minHeight: "70vh" }}
-    title="Ebook Método Esther"
-  />
-</ScrollArea>
+                      <iframe
+                        ref={iframeRef}
+                        src="/MetodoEsther.html" // Nome do seu arquivo no public (sem acento e espaço de preferência)
+                        width="100%"
+                        height="100%"
+                        style={{ border: "none", minHeight: "70vh" }}
+                        title="Ebook Método Esther"
+                        allowFullScreen
+                      />
+                    </ScrollArea>
                   </DialogContent>
                 </Dialog>
               </CardContent>
