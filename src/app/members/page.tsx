@@ -47,7 +47,7 @@ export default function MembersPage() {
     if (!document.fullscreenElement) {
       iframe.requestFullscreen().catch((err) => {
         alert(
-          `Error attempting to enable full-screen mode: ${err.message} (${err.name})`
+          `Error al intentar habilitar el modo de pantalla completa: ${err.message} (${err.name})`
         );
       });
     } else {
@@ -62,7 +62,7 @@ export default function MembersPage() {
     if (!document.fullscreenElement) {
       iframe.requestFullscreen().catch((err) => {
         alert(
-          `Error attempting to enable full-screen mode: ${err.message} (${err.name})`
+          `Error al intentar habilitar el modo de pantalla completa: ${err.message} (${err.name})`
         );
       });
     } else {
@@ -85,7 +85,7 @@ export default function MembersPage() {
   return (
     <>
       <Head>
-        <title>Bem-vinda | Método Esther</title>
+        <title>Bienvenida | Método Esther</title>
       </Head>
       <div className="min-h-screen bg-background">
         <header className="flex items-center justify-between border-b bg-card p-4 shadow-sm">
@@ -98,7 +98,7 @@ export default function MembersPage() {
             </span>
             <Button onClick={handleLogout} variant="outline" size="sm">
               <LogOut className="mr-2 h-4 w-4" />
-              Sair
+              Salir
             </Button>
           </div>
         </header>
@@ -106,10 +106,10 @@ export default function MembersPage() {
         <main className="container mx-auto p-4 py-8 md:p-8">
           <div className="mb-8 text-center">
             <h1 className="font-headline text-3xl font-bold tracking-tight text-foreground md:text-4xl">
-              Bem-vinda, Mulher de Deus!
+              ¡Bienvenida, Mujer de Dios!
             </h1>
             <p className="mt-2 text-lg text-muted-foreground">
-              Explore o conteúdo exclusivo que preparamos para você.
+              Explora el contenido exclusivo que hemos preparado para ti.
             </p>
           </div>
 
@@ -125,26 +125,26 @@ export default function MembersPage() {
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground">
-                  Mergulhe nos ensinamentos e transforme sua jornada. Este é o
-                  seu guia principal para uma vida com mais propósito e fé.
+                  Sumérgete en las enseñanzas y transforma tu viaje. Esta es tu
+                  guía principal para una vida con más propósito y fe.
                 </p>
                 <Dialog>
                   <DialogTrigger asChild>
-                    <Button className="mt-4 w-full">Acesse Aqui</Button>
+                    <Button className="mt-4 w-full">Accede Aquí</Button>
                   </DialogTrigger>
                   <DialogContent className="sm:max-w-[80vw] h-[80vh] flex flex-col">
                     <DialogHeader className="flex-row items-center justify-between">
                       <div>
-                        <DialogTitle>O Método Esther</DialogTitle>
+                        <DialogTitle>El Método Esther</DialogTitle>
                         <DialogDescription>
-                          Seu guia para uma vida com mais propósito e fé.
+                          Tu guía para una vida con más propósito y fe.
                         </DialogDescription>
                       </div>
                       <Button
                         variant="ghost"
                         size="icon"
                         onClick={toggleFullscreen}
-                        aria-label="Tela cheia"
+                        aria-label="Pantalla completa"
                       >
                         {isFullscreen ? (
                           <Minimize className="h-5 w-5" />
@@ -156,7 +156,7 @@ export default function MembersPage() {
                     <ScrollArea className="flex-grow h-full">
                       <iframe
                         ref={iframeRef}
-                        src="/MetodoEsther.html" // Nome do seu arquivo no public (sem acento e espaço de preferência)
+                        src="/MetodoEsther.html" // Your file name in public (preferably without accents or spaces)
                         width="100%"
                         height="100%"
                         style={{ border: "none", minHeight: "70vh" }}
@@ -175,32 +175,32 @@ export default function MembersPage() {
                   <Star className="h-6 w-6 text-primary" />
                 </div>
                 <CardTitle className="font-headline text-2xl text-foreground">
-                  Conteúdo Bônus
+                  Contenido Extra
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground">
-                  Materiais complementares, vídeos e áudios exclusivos para
-                  aprofundar seu conhecimento e fortalecer sua caminhada.
+                  Materiales complementarios, videos y audios exclusivos para
+                  profundizar tu conocimiento y fortalecer tu camino.
                 </p>
 
                 <Dialog>
                   <DialogTrigger asChild>
-                    <Button className="mt-4 w-full">Ver Bônus</Button>
+                    <Button className="mt-4 w-full">Ver Contenido Extra</Button>
                   </DialogTrigger>
                   <DialogContent className="sm:max-w-[80vw] h-[80vh] flex flex-col">
                     <DialogHeader className="flex-row items-center justify-between">
                       <div>
-                        <DialogTitle>Bônus - Guia de Preparação de Sermones</DialogTitle>
+                        <DialogTitle>Extra - Guía de Preparación de Sermones</DialogTitle>
                         <DialogDescription>
-                          Material extra para aprofundar seu preparo ministerial.
+                          Material adicional para profundizar tu preparación ministerial.
                         </DialogDescription>
                       </div>
                       <Button
                         variant="ghost"
                         size="icon"
                         onClick={toggleFullscreenBonus}
-                        aria-label="Tela cheia"
+                        aria-label="Pantalla completa"
                       >
                         {isFullscreen ? (
                           <Minimize className="h-5 w-5" />
@@ -212,11 +212,11 @@ export default function MembersPage() {
                     <ScrollArea className="flex-grow h-full">
                       <iframe
                         ref={iframeRef}
-                        src="/ME.html" // Coloque aqui o nome exato do arquivo que está em public
+                        src="/ME.html" // Put the exact name of the file that is in public here
                         width="100%"
                         height="100%"
                         style={{ border: "none", minHeight: "70vh" }}
-                        title="Guia de Preparação de Sermones"
+                        title="Guía de Preparación de Sermones"
                         allowFullScreen
                       />
                     </ScrollArea>

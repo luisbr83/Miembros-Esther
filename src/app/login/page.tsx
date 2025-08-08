@@ -30,8 +30,8 @@ import { useToast } from "@/hooks/use-toast";
 import { auth } from "@/lib/firebase";
 
 const formSchema = z.object({
-  email: z.string().email({ message: "Por favor, insira um email válido." }),
-  password: z.string().min(1, { message: "A senha não pode estar em branco." }),
+  email: z.string().email({ message: "Por favor, ingresa un correo electrónico válido." }),
+  password: z.string().min(1, { message: "La contraseña no puede estar en blanco." }),
 });
 
 export default function LoginPage() {
@@ -54,16 +54,16 @@ export default function LoginPage() {
       // The AuthProvider will handle the redirect
     } catch (error: any) {
       console.error("Login failed:", error);
-      let errorMessage = "Ocorreu um erro ao fazer login. Tente novamente.";
+      let errorMessage = "Ocurrió un error al iniciar sesión. Inténtalo de nuevo.";
       if (
         error.code === "auth/user-not-found" ||
         error.code === "auth/wrong-password" ||
         error.code === "auth/invalid-credential"
       ) {
-        errorMessage = "Email ou senha inválidos.";
+        errorMessage = "Correo electrónico o contraseña no válidos.";
       }
       toast({
-        title: "Erro de Login",
+        title: "Error de Inicio de Sesión",
         description: errorMessage,
         variant: "destructive",
       });
@@ -81,9 +81,9 @@ export default function LoginPage() {
         <Card className="w-full max-w-md shadow-lg">
           <CardHeader className="text-center">
             <CardTitle className="font-headline text-3xl font-bold text-primary">
-              Área de Membros
+              Área de Miembros
             </CardTitle>
-            <CardDescription>Bem-vinda de volta!</CardDescription>
+            <CardDescription>¡Bienvenida de vuelta!</CardDescription>
           </CardHeader>
           <CardContent>
             <Form {...form}>
@@ -93,9 +93,9 @@ export default function LoginPage() {
                   name="email"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Email</FormLabel>
+                      <FormLabel>Correo Electrónico</FormLabel>
                       <FormControl>
-                        <Input placeholder="seuemail@exemplo.com" {...field} />
+                        <Input placeholder="tuemail@ejemplo.com" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -106,7 +106,7 @@ export default function LoginPage() {
                   name="password"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Senha</FormLabel>
+                      <FormLabel>Contraseña</FormLabel>
                       <FormControl>
                         <Input
                           type="password"
@@ -122,7 +122,7 @@ export default function LoginPage() {
                   {isLoading ? (
                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                   ) : null}
-                  Entrar
+                  Ingresar
                 </Button>
               </form>
             </Form>
