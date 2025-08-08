@@ -41,10 +41,26 @@ export default function MembersPage() {
   };
 
   const toggleFullscreen = () => {
-    if (!iframeRef.current) return;
+    const iframe = iframeRef.current;
+    if (!iframe) return;
 
     if (!document.fullscreenElement) {
-      iframeRef.current.requestFullscreen().catch((err) => {
+      iframe.requestFullscreen().catch((err) => {
+        alert(
+          `Error attempting to enable full-screen mode: ${err.message} (${err.name})`
+        );
+      });
+    } else {
+      document.exitFullscreen();
+    }
+  };
+  
+  const toggleFullscreenBonus = () => {
+    const iframe = iframeRef.current;
+    if (!iframe) return;
+
+    if (!document.fullscreenElement) {
+      iframe.requestFullscreen().catch((err) => {
         alert(
           `Error attempting to enable full-screen mode: ${err.message} (${err.name})`
         );
@@ -167,7 +183,45 @@ export default function MembersPage() {
                   Materiais complementares, vídeos e áudios exclusivos para
                   aprofundar seu conhecimento e fortalecer sua caminhada.
                 </p>
-                <Button className="mt-4 w-full">Ver Bônus</Button>
+
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <Button className="mt-4 w-full">Ver Bônus</Button>
+                  </DialogTrigger>
+                  <DialogContent className="sm:max-w-[80vw] h-[80vh] flex flex-col">
+                    <DialogHeader className="flex-row items-center justify-between">
+                      <div>
+                        <DialogTitle>Bônus - Guia de Preparação de Sermones</DialogTitle>
+                        <DialogDescription>
+                          Material extra para aprofundar seu preparo ministerial.
+                        </DialogDescription>
+                      </div>
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        onClick={toggleFullscreenBonus}
+                        aria-label="Tela cheia"
+                      >
+                        {isFullscreen ? (
+                          <Minimize className="h-5 w-5" />
+                        ) : (
+                          <Expand className="h-5 w-5" />
+                        )}
+                      </Button>
+                    </DialogHeader>
+                    <ScrollArea className="flex-grow h-full">
+                      <iframe
+                        ref={iframeRef}
+                        src="/ME.html" // Coloque aqui o nome exato do arquivo que está em public
+                        width="100%"
+                        height="100%"
+                        style={{ border: "none", minHeight: "70vh" }}
+                        title="Guia de Preparação de Sermones"
+                        allowFullScreen
+                      />
+                    </ScrollArea>
+                  </DialogContent>
+                </Dialog>
               </CardContent>
             </Card>
           </div>
