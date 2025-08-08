@@ -13,6 +13,15 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { auth } from "@/lib/firebase";
 
 export default function MembersPage() {
@@ -74,7 +83,57 @@ export default function MembersPage() {
                   Mergulhe nos ensinamentos e transforme sua jornada. Este é o
                   seu guia principal para uma vida com mais propósito e fé.
                 </p>
-                <Button className="mt-4 w-full">Acessar Ebook</Button>
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <Button className="mt-4 w-full">Acessar Ebook</Button>
+                  </DialogTrigger>
+                  <DialogContent className="sm:max-w-[80vw] h-[80vh] flex flex-col">
+                    <DialogHeader>
+                      <DialogTitle>O Método Esther</DialogTitle>
+                      <DialogDescription>
+                        Seu guia para uma vida com mais propósito e fé.
+                      </DialogDescription>
+                    </DialogHeader>
+                    <ScrollArea className="flex-grow h-full">
+                      <div className="prose max-w-none p-6">
+                        {/*
+                          ADICIONE SEU HTML AQUI
+                          Você pode colar o conteúdo do seu ebook diretamente dentro desta div.
+                          Por exemplo:
+                        */}
+                        <h1>Capítulo 1: O Início da Jornada</h1>
+                        <p>
+                          Lorem ipsum dolor sit amet, consectetur adipiscing
+                          elit. Sed non risus. Suspendisse lectus tortor,
+                          dignissim sit amet, adipiscing nec, ultricies sed,
+                          dolor. Cras elementum ultrices diam. Maecenas ligula
+                          massa, varius a, semper congue, euismod non, mi.
+                        </p>
+                        <p>
+                          Proin porttitor, orci nec nonummy molestie, enim est
+                          eleifend mi, non fermentum diam nisl sit amet erat.
+                          Duis semper. Duis arcu massa, scelerisque vitae,
+                          consequat in, pretium a, enim. Pellentesque congue.
+                          Ut in risus volutpat libero pharetra tempor. Cras
+                          vestibulum bibendum augue. Praesent egestas leo in
+                          pede. Praesent blandit odio eu enim. Pellentesque sed
+                          dui ut augue blandit sodales. Vestibulum ante ipsum
+                          primis in faucibus orci luctus et ultrices posuere
+                          cubilia Curae; Aliquam nibh. Mauris ac mauris sed pede
+                          pellentesque fermentum. Maecenas adipiscing ante non
+                          diam.
+                        </p>
+                        <h2>Subtítulo 1.1</h2>
+                        <p>
+                          Fusce consectetuer risus a nunc. Aliquam erat
+                          volutpat. Morbi in sem quis dui placerat ornare.
+                          Pellentesque odio nisi, euismod in, pharetra a,
+                          ultricies in, diam. Sed arcu. Cras consequat.
+                        </p>
+                      </div>
+                    </ScrollArea>
+                  </DialogContent>
+                </Dialog>
               </CardContent>
             </Card>
 
