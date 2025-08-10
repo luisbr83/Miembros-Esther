@@ -160,7 +160,7 @@ export default function MembersPage() {
                         width="100%"
                         height="100%"
                         style={{ border: "none", minHeight: "70vh" }}
-                        title="Ebook Método Esther"
+                        title="Método Esther"
                         allowFullScreen
                       />
                     </ScrollArea>
@@ -212,11 +212,11 @@ export default function MembersPage() {
                     <ScrollArea className="flex-grow h-full">
                       <iframe
                         ref={iframeRef}
-                        src="/ME.html" // Put the exact name of the file that is in public here
+                        src="/GPSermones.html" // Put the exact name of the file that is in public here
                         width="100%"
                         height="100%"
                         style={{ border: "none", minHeight: "70vh" }}
-                        title="Guía de Preparación de Sermones"
+                        title="Guia de Preparacion de Sermones.html"
                         allowFullScreen
                       />
                     </ScrollArea>

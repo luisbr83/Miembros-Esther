@@ -51,9 +51,8 @@ export default function LoginPage() {
     setIsLoading(true);
     try {
       await signInWithEmailAndPassword(auth, values.email, values.password);
-      // The AuthProvider will handle the redirect
+      // The AuthProvider will handle the redirect on successful login
     } catch (error: any) {
-      console.error("Login failed:", error);
       let errorMessage = "Ocurrió un error al iniciar sesión. Inténtalo de nuevo.";
       if (
         error.code === "auth/user-not-found" ||
