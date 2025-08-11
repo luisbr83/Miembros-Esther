@@ -1,7 +1,7 @@
 "use client";
 
 import { signOut } from "firebase/auth";
-import { BookOpen, LogOut, Star, Expand, Minimize } from "lucide-react";
+import { BookOpen, LogOut, Star, Expand, Minimize, Mail } from "lucide-react";
 import Head from "next/head";
 import { useRouter } from "next/navigation";
 import React, { useRef, useState, useEffect } from "react";
@@ -24,6 +24,8 @@ import {
 } from "@/components/ui/dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { auth } from "@/lib/firebase";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+
 
 export default function MembersPage() {
   const router = useRouter();
@@ -111,6 +113,28 @@ export default function MembersPage() {
             <p className="mt-2 text-lg text-muted-foreground">
               Explora el contenido exclusivo que hemos preparado para ti.
             </p>
+          </div>
+
+          <div className="mb-8">
+            <Alert>
+              <AlertTitle className="flex items-center gap-2 font-bold">📢 Importante:</AlertTitle>
+              <AlertDescription>
+                <p className="mt-2">
+                  Si experimentas cualquier problema técnico o dificultad al acceder o utilizar el contenido del curso, por favor infórmanos de inmediato.
+                  Nuestro equipo de soporte está listo para ayudarte y resolver tu situación lo más rápido posible.
+                </p>
+                <p className="mt-4 flex items-center gap-2">
+                  <Mail className="h-4 w-4" />
+                  <strong>Correo de soporte:</strong>
+                  <a href="mailto:apoyo@infodigitalexpress.shop" className="text-primary hover:underline">
+                    apoyo@infodigitalexpress.shop
+                  </a>
+                </p>
+                <p className="mt-4">
+                  Tu satisfacción y experiencia son nuestra prioridad. 💜
+                </p>
+              </AlertDescription>
+            </Alert>
           </div>
 
           <div className="grid gap-8 md:grid-cols-2">
