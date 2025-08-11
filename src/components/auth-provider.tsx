@@ -37,7 +37,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     if (loading) return;
 
-    const isAuthPage = pathname === "/login";
+    const isAuthPage = pathname === "/login" || pathname === "/signup";
     const isProtectedPage = pathname === "/members";
 
     if (!user && isProtectedPage) {
@@ -57,7 +57,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     );
   }
 
-  const isAuthPage = pathname === "/login";
+  const isAuthPage = pathname === "/login" || pathname === "/signup";
   const isProtectedPage = pathname === "/members";
 
   // Don't render anything while redirecting

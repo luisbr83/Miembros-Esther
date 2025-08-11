@@ -1,7 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import { Loader2 } from "lucide-react";
 import Head from "next/head";
 import { useRouter } from "next/navigation";
@@ -32,10 +32,10 @@ import Link from "next/link";
 
 const formSchema = z.object({
   email: z.string().email({ message: "Por favor, ingresa un correo electrónico válido." }),
-  password: z.string().min(1, { message: "La contraseña no puede estar en blanco." }),
+  password: z.string().min(6, { message: "La contraseña debe tener al menos 6 caracteres." }),
 });
 
-export default function LoginPage() {
+export default function SignupPage() {
   const router = useRouter();
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
@@ -51,19 +51,19 @@ export default function LoginPage() {
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsLoading(true);
     try {
-      await signInWithEmailAndPassword(auth, values.email, values.password);
-      // The AuthProvider will handle the redirect on successful login
+      await createUserWithEmailAndPassword(auth, values.email, values.password);
+      // The AuthProvider will handle the redirect on successful signup
     } catch (error: any) {
-      let errorMessage = "Ocurrió un error al iniciar sesión. Inténtalo de nuevo.";
-      if (
-        error.code === "auth/user-not-found" ||
-        error.code === "auth/wrong-password" ||
-        error.code === "auth/invalid-credential"
-      ) {
-        errorMessage = "Correo electrónico o contraseña no válidos.";
+      let errorMessage = "Ocurrió un error al registrarse. Inténtalo de nuevo.";
+      if (error.code === 'auth/email-already-in-use') {
+        errorMessage = "Este correo electrónico ya está en uso.";
+      } else if (error.code === 'auth/invalid-email') {
+        errorMessage = "El correo electrónico no es válido.";
+      } else if (error.code === 'auth/weak-password') {
+        errorMessage = "La contraseña es demasiado débil.";
       }
       toast({
-        title: "Error de Inicio de Sesión",
+        title: "Error de Registro",
         description: errorMessage,
         variant: "destructive",
       });
@@ -75,15 +75,15 @@ export default function LoginPage() {
   return (
     <>
       <Head>
-        <title>Login | Método Esther</title>
+        <title>Registro | Método Esther</title>
       </Head>
       <div className="flex min-h-screen flex-col items-center justify-center bg-background p-4">
         <Card className="w-full max-w-md shadow-lg">
           <CardHeader className="text-center">
             <CardTitle className="font-headline text-3xl font-bold text-primary">
-              Área de Miembros
+              Crear una Cuenta
             </CardTitle>
-            <CardDescription>¡Bienvenida de vuelta!</CardDescription>
+            <CardDescription>Regístrese para acceder al área de miembros.</CardDescription>
           </CardHeader>
           <CardContent>
             <Form {...form}>
@@ -122,16 +122,16 @@ export default function LoginPage() {
                   {isLoading ? (
                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                   ) : null}
-                  Ingresar
+                  Registrarse
                 </Button>
               </form>
             </Form>
             <div className="mt-4 text-center">
-              <Link href="/signup" legacyBehavior>
-                <a className="text-sm text-primary hover:underline">
-                  Regístrese con el correo electrónico con el que realizó la compra.
-                </a>
-              </Link>
+                <Link href="/login" legacyBehavior>
+                    <a className="text-sm text-primary hover:underline">
+                        ¿Ya tienes una cuenta? Iniciar sesión
+                    </a>
+                </Link>
             </div>
           </CardContent>
         </Card>
