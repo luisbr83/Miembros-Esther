@@ -127,10 +127,8 @@ export default function LoginPage() {
               </form>
             </Form>
             <div className="mt-4 text-center">
-              <Link href="/signup" legacyBehavior>
-                <a className="text-sm text-primary hover:underline">
-                  Regístrese con el correo electrónico con el que realizó la compra.
-                </a>
+              <Link href="/signup" className="text-sm text-primary hover:underline">
+                Regístrese con el correo electrónico con el que realizó la compra.
               </Link>
             </div>
           </CardContent>

@@ -127,10 +127,8 @@ export default function SignupPage() {
               </form>
             </Form>
             <div className="mt-4 text-center">
-                <Link href="/login" legacyBehavior>
-                    <a className="text-sm text-primary hover:underline">
-                        ¿Ya tienes una cuenta? Iniciar sesión
-                    </a>
+                <Link href="/login" className="text-sm text-primary hover:underline">
+                    ¿Ya tienes una cuenta? Iniciar sesión
                 </Link>
             </div>
           </CardContent>
