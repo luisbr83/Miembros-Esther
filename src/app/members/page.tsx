@@ -204,8 +204,7 @@ export default function MembersPage() {
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground">
-                  Materiales complementarios, videos y audios exclusivos para
-                  profundizar tu conocimiento y fortalecer tu camino.
+                  Material complementar exclusivo para profundizar tu conocimiento y fortalecer tu camino.
                 </p>
 
                 <Dialog>
